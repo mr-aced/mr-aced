@@ -13,9 +13,17 @@ document.getElementById(
 menuToggle.addEventListener(
 "click",
 () => {
-
   navMenu.classList.toggle(
   "active"
+  );
+
+  const expanded = navMenu.classList.contains(
+    "active"
+  );
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    expanded
   );
 
 }
@@ -36,6 +44,13 @@ document
     navMenu.classList.remove(
     "active"
     );
+
+    if(menuToggle){
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+    }
 
   });
 
@@ -290,6 +305,357 @@ window.addEventListener(
 
 });
 
+/* ================= COUNTER ANIMATION ================= */
+
+const statNumbers =
+document.querySelectorAll(
+".stat-number"
+);
+
+const getDynamicTarget =
+(element) => {
+
+  const source =
+  element.dataset.countSource;
+
+  if(source === "projects"){
+    const value =
+    document.querySelectorAll(
+    ".project-card"
+    ).length;
+
+    return Number.isFinite(value)
+      ? value
+      : 0;
+  }
+
+  if(source === "skills"){
+    const value =
+    document.querySelectorAll(
+    ".skill-card"
+    ).length;
+
+    return Number.isFinite(value)
+      ? value
+      : 0;
+  }
+
+  if(source === "percent"){
+    return 100;
+  }
+
+  const parsedValue =
+  Number.parseInt(
+  element.dataset.target || "0",
+  10
+  );
+
+  return Number.isFinite(parsedValue)
+    ? parsedValue
+    : 0;
+};
+
+const getChartColor =
+(value) => {
+
+  if(value < 50){
+    return "low";
+  }
+
+  if(value >= 50 && value <= 70){
+    return "medium";
+  }
+
+  return "full";
+};
+
+const updateChartHeight =
+(card, value) => {
+
+  const bars =
+  card.querySelectorAll(
+  ".mini-chart span"
+  );
+
+  const normalized =
+  Math.max(0, Math.min(value, 100));
+
+  const level =
+  getChartColor(normalized);
+
+  card.setAttribute(
+  "data-current-level",
+  level
+  );
+
+  bars.forEach(
+  (bar, index) => {
+    const progress =
+    (normalized / 100) * (bars.length - 1);
+
+    const isActive =
+    index <= progress;
+
+    bar.style.height =
+    isActive ?
+    `${(index + 1) * 18}%` :
+    "14%";
+
+    bar.style.opacity =
+    isActive ? "1" : "0.18";
+
+    bar.classList.remove(
+    "low",
+    "medium",
+    "full"
+    );
+
+    bar.classList.add(level);
+  });
+};
+
+const animateCounter =
+(element, targetValue, suffix = "") => {
+
+  const target =
+  Number.parseInt(
+  targetValue,
+  10
+  );
+
+  if(!Number.isFinite(target)){
+    element.textContent =
+    `0${suffix}`;
+    return;
+  }
+
+  const card =
+  element.closest(
+  ".stats-card"
+  );
+
+  const duration = 1200;
+  const start =
+  performance.now();
+
+  const updateValue =
+  (currentTime) => {
+
+    const elapsed =
+    currentTime - start;
+
+    const progress =
+    Math.min(elapsed / duration, 1);
+
+    const eased =
+    1 - Math.pow(1 - progress, 3);
+
+    const currentValue =
+    Math.round(target * eased);
+
+    element.textContent =
+    `${currentValue}${suffix}`;
+
+    if(card){
+      updateChartHeight(
+      card,
+      currentValue
+      );
+    }
+
+    if(progress < 1){
+      requestAnimationFrame(updateValue);
+    }
+    else{
+      element.textContent =
+      `${target}${suffix}`;
+
+      if(card){
+        updateChartHeight(
+        card,
+        target
+        );
+      }
+    }
+
+  };
+
+  requestAnimationFrame(updateValue);
+};
+
+const initializeCounters =
+() => {
+
+  if(!statNumbers.length){
+    return;
+  }
+
+  statNumbers.forEach(
+  (number) => {
+    const targetValue =
+    getDynamicTarget(number);
+
+    number.dataset.target =
+    String(targetValue);
+
+    number.dataset.active =
+    "false";
+
+    number.textContent = "0";
+  });
+
+  document.querySelectorAll(
+  ".chart-bar"
+  ).forEach(
+  (bar, index) => {
+    const rawHeight =
+    bar.style.getPropertyValue(
+    "--h"
+    );
+
+    const value =
+    Number.parseInt(
+    rawHeight,
+    10
+    );
+
+    if(value < 50){
+      bar.dataset.level =
+      "low";
+    }
+    else if(value === 50){
+      bar.dataset.level =
+      "medium";
+    }
+    else if(value === 100){
+      bar.dataset.level =
+      "full";
+    }
+
+    bar.style.setProperty(
+    "--delay",
+    `${index * 100}ms`
+    );
+  });
+};
+
+const triggerCounters =
+() => {
+
+  if(!statNumbers.length){
+    return;
+  }
+
+  const statsSection =
+  document.querySelector(
+  ".stats-grid"
+  );
+
+  if(!statsSection){
+    return;
+  }
+
+  const rect =
+  statsSection.getBoundingClientRect();
+
+  const inView =
+  rect.top < window.innerHeight * 0.85 &&
+  rect.bottom > 0;
+
+  if(!inView){
+    statNumbers.forEach(
+    (number) => {
+      number.dataset.active =
+      "false";
+
+      number.textContent = "0";
+    });
+
+    document.querySelectorAll(
+    ".stats-card"
+    ).forEach(card => {
+      card.classList.remove(
+      "is-active"
+      );
+
+      card.setAttribute(
+      "data-current-level",
+      "low"
+      );
+
+      card.querySelectorAll(
+      ".mini-chart span"
+      ).forEach(bar => {
+        bar.style.height =
+        "14%";
+        bar.style.opacity =
+        "0.18";
+      });
+    });
+
+    return;
+  }
+
+  const cards =
+  document.querySelectorAll(
+  ".stats-card"
+  );
+
+  cards.forEach(
+  card => {
+    card.classList.add(
+    "is-active"
+    );
+  });
+
+  statNumbers.forEach(
+  (number, index) => {
+    if(number.dataset.active === "true"){
+      return;
+    }
+
+    number.dataset.active =
+    "true";
+
+    const targetValue =
+    getDynamicTarget(number);
+
+    setTimeout(
+    () => {
+      animateCounter(
+      number,
+      targetValue,
+      number.dataset.suffix || ""
+      );
+    },
+    index * 100
+    );
+  });
+};
+
+if(document.readyState === "loading"){
+  document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    initializeCounters();
+    triggerCounters();
+  }
+  );
+} else {
+  initializeCounters();
+  triggerCounters();
+}
+
+window.addEventListener(
+"scroll",
+triggerCounters
+);
+
+window.addEventListener(
+"load",
+triggerCounters
+);
+
 /* ================= GALLERY CAROUSEL ================= */
 
 const gallerySlides =
@@ -366,43 +732,3 @@ if(nextGallery && prevGallery){
 
 }
 
-/* ================= PROJECT COUNTER ================= */
-
-function animateCounter(id, target, duration = 1200) {
-
-  const element = document.getElementById(id);
-
-  if (!element) return;
-
-  let start = 0;
-  let startTime = null;
-
-  function updateCounter(currentTime) {
-
-    if (!startTime) startTime = currentTime;
-
-    const progress = currentTime - startTime;
-
-    const value = Math.min(
-      Math.floor((progress / duration) * target),
-      target
-    );
-
-    element.innerText = value + "+";
-
-    if (progress < duration) {
-      requestAnimationFrame(updateCounter);
-    }
-  }
-
-  requestAnimationFrame(updateCounter);
-}
-
-window.addEventListener("load", () => {
-
-  const projects =
-  document.querySelectorAll(".project-card").length;
-
-  animateCounter("project-count", projects);
-
-});

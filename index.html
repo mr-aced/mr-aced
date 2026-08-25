@@ -45,12 +45,15 @@
 
   <!-- MOBILE MENU -->
 
-  <div class="menu-toggle"
-  id="menu-toggle">
+  <button class="menu-toggle"
+  id="menu-toggle"
+  aria-label="Toggle menu"
+  aria-expanded="false"
+  type="button">
 
-    <i class="fa-solid fa-bars"></i>
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
 
-  </div>
+  </button>
 
   <!-- NAV LINKS -->
 
@@ -256,7 +259,7 @@ class="about floating-section">
     <div class="about-image">
 
       <img
-      src="assets/three.PNG"
+      src="assets/about pic.jpeg"
       alt="Mr Aced">
 
     </div>
@@ -266,52 +269,26 @@ class="about floating-section">
     <div class="about-content">
 
       <p>
+        I am <strong>Johnbosco Ekwuocha</strong>, also known as <strong>Mr. Aced</strong> — a data scientist and analyst driven by the power of mathematics, insight, and intelligent systems.
+      </p>
 
-        I am
-        <strong>
-          Johnbosco Ekwuocha 
-        </strong>,
+      <p>
+        I turn complex data into clear decisions, helping businesses uncover patterns, predict outcomes, and build smarter strategies. My work blends Python, SQL, Power BI, Excel, machine learning, and data storytelling to solve real-world problems with measurable impact.
+      </p>
 
-       
-     <p>
-       popularly known as <strong>Mr. Aced</strong>
-       a passionate and results-driven Data Scientist 
-       and Data Analyst with a strong academic foundation
-       in Mathematics from Alex Ekwueme Federal University 
-       Ndufu-Alike. I specialize in transforming complex data 
-       into actionable insights, predictive intelligence, and 
-       impactful solutions that support smarter decision-making. 
-       With expertise in Python, SQL, Power BI, Excel, Machine 
-       Learning, Data Visualization, Statistical Analysis, and 
-       Business Intelligence, I enjoy uncovering patterns, solving problems,
-       and turning raw data into meaningful stories that drive measurable impact.
-       <p>
-       Driven by curiosity, analytical thinking, and 
-       continuous growth, I am passionate about leveraging data, 
-       mathematics, and intelligent systems to solve real-world 
-       challenges and create innovative solutions. I continuously 
-       expand my expertise in Artificial Intelligence, Machine Learning, 
-       Predictive Analytics, and Data Analytics, while building practical, 
-       data-driven projects that demonstrate 
-       creativity, technical excellence, and business value.
-     </p>
-
+      <p>
+        With a foundation in Mathematics and a growing focus on AI, analytics, and predictive intelligence, I build practical solutions that connect technical depth with business value.
+      </p>
 
       <div class="journey-card">
 
         <h3>
-
           Mathematics →
           Data Science
-
         </h3>
 
         <p>
-
-          Building expertise
-          in Machine Learning,
-          Analytics & Research.
-
+          Building expertise in machine learning, analytics, and research-driven problem solving.
         </p>
 
       </div>
@@ -830,62 +807,6 @@ class="projects floating-section">
 
   </div>
 
-</section>
-
-<section class="floating-section">
-
-  <div class="stats-grid">
-
-    <div class="stats-card">
-      <h3 id="project-count">0+</h3>
-      <p>Projects Completed</p>
-    </div>
-
-    <div class="stats-card">
-      <h3>5+</h3>
-      <p>Tools & Technologies</p>
-    </div>
-
-    <div class="stats-card">
-      <h3>100%</h3>
-      <p>Data-Driven Solutions</p>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="floating-section">
-
-  <div class="section-header">
-    <span>AVAILABLE</span>
-    <h2>Open for <em>Opportunities</em></h2>
-  </div>
-
-  <div class="availability-card">
-
-    <div class="availability-status">
-      <span class="status-dot"></span>
-      Available for Work
-    </div>
-
-    <p>
-      Currently open to internships, freelance projects,
-      collaborations, and data analysis opportunities.
-    </p>
-
-    <div class="availability-tags">
-      <span>Internships</span>
-      <span>Freelance</span>
-      <span>Remote Work</span>
-      <span>Collaborations</span>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= PHOTO CAROUSEL ================= -->
 
 <section class="photo-carousel floating-section">
 
@@ -946,6 +867,129 @@ class="projects floating-section">
 
 </section>
 
+</section>
+
+<section class="floating-section">
+
+  <div class="stats-grid">
+
+    <div class="stats-card" data-chart-target="2">
+      <div class="mini-chart mini-bars low" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h3 class="stat-number" data-target="2" data-suffix="+" data-count-source="projects">0</h3>
+      <p>Projects Completed</p>
+    </div>
+
+    <div class="stats-card" data-chart-target="4">
+      <div class="mini-chart mini-bars medium" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h3 class="stat-number" data-target="4" data-suffix="+" data-count-source="skills">0</h3>
+      <p>Tools & Technologies</p>
+    </div>
+
+    <div class="stats-card" data-chart-target="100">
+      <div class="mini-chart mini-bars full" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h3 class="stat-number" data-target="100" data-suffix="%" data-count-source="percent">0</h3>
+      <p>Data-Driven Solutions</p>
+    </div>
+
+  </div>
+
+  <div class="project-visual-card">
+    <div class="project-visual-copy">
+      <span>PROJECT VISUALS</span>
+      <h3>Insights through analysis.</h3>
+    </div>
+
+    <div class="project-visual-preview">
+      <div class="visual-panel">
+        <div class="visual-panel-bar bar-one"></div>
+        <div class="visual-panel-bar bar-two"></div>
+        <div class="visual-panel-bar bar-three"></div>
+        <div class="visual-panel-bar bar-four"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="floating-section">
+
+  <div class="section-header">
+    <span>AVAILABLE</span>
+    <h2>Open for <em>Opportunities</em></h2>
+  </div>
+
+  <div class="availability-card">
+
+    <div class="availability-status">
+      <span class="status-dot"></span>
+      Available for Work
+    </div>
+
+    <p>
+      Currently open to internships, freelance projects,
+      collaborations, and data analysis opportunities.
+    </p>
+
+    <div class="availability-tags">
+      <span>Internships</span>
+      <span>Freelance</span>
+      <span>Remote Work</span>
+      <span>Collaborations</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= COMPANIES WORKED WITH ================= -->
+
+<section class="companies-section floating-section">
+
+  <div class="section-header">
+    <span>— WORKED WITH</span>
+    <h2>Trusted by <em>forward-thinking teams.</em></h2>
+  </div>
+
+  <div class="company-marquee">
+    <div class="company-track">
+      <span>Trigger Table Water</span>
+      <span>Great Maduc Integrated Limited</span>
+      <span>Trigger Table Water</span>
+      <span>Great Maduc Integrated Limited</span>
+      <span>Trigger Table Water</span>
+      <span>Great Maduc Integrated Limited</span>
+      <span>Trigger Table Water</span>
+      <span>Great Maduc Integrated Limited</span>
+      <span>Trigger Table Water</span>
+      <span>Great Maduc Integrated Limited</span>
+      <span>Trigger Table Water</span>
+      <span>Great Maduc Integrated Limited</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= PHOTO CAROUSEL ================= -->
+
+
 <section id="gallery"
 class="gallery floating-section">
 
@@ -966,34 +1010,128 @@ class="gallery floating-section">
 
   <div class="premium-gallery">
 
-    <button class="gallery-btn prev-gallery">
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
+    <div class="portrait-carousel">
 
-    <div class="gallery-slider">
+      <div class="portrait-track">
 
-      <div class="gallery-slider" id="gallerySlider">
+        <div class="portrait-card">
+          <img src="assets/four.PNG" alt="Portrait gallery 1">
+        </div>
 
-  <div class="gallery-slide active-gallery">
-    <img src="assets/four.PNG">
+        <div class="portrait-card">
+          <img src="assets/three.PNG" alt="Portrait gallery 2">
+        </div>
+
+        <div class="portrait-card">
+          <img src="assets/four.PNG" alt="Portrait gallery 3">
+        </div>
+
+        <div class="portrait-card">
+          <img src="assets/three.PNG" alt="Portrait gallery 4">
+        </div>
+
+        <div class="portrait-card">
+          <img src="assets/four.PNG" alt="Portrait gallery 5">
+        </div>
+
+        <div class="portrait-card">
+          <img src="assets/three.PNG" alt="Portrait gallery 6">
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="gallery-slide">
-    <img src="assets/three.PNG">
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="testimonials floating-section">
+
+  <div class="section-header">
+    <span>— TESTIMONIALS</span>
+    <h2>What people <em>say.</em></h2>
   </div>
 
-  <div class="gallery-slide">
-    <img src="assets/four.PNG">
+  <div class="testimonial-carousel-wrap">
+    <div class="testimonial-track">
+
+      <article class="testimonial-card">
+        <div class="quote-mark">“</div>
+        <p>
+          Johnbosco brings clarity to complex data and turns it into useful business decisions.
+          His approach is thoughtful, practical, and incredibly effective.
+        </p>
+        <div class="testimonial-author">
+          <strong>Client / Collaborator</strong>
+          <span>Strategy & Insights</span>
+        </div>
+      </article>
+
+      <article class="testimonial-card featured">
+        <div class="quote-mark">“</div>
+        <p>
+          Working with him felt effortless. He combines strong analytical thinking with a sharp eye for
+          real-world business impact and communication.
+        </p>
+        <div class="testimonial-author">
+          <strong>Business Partner</strong>
+          <span>Data & Operations</span>
+        </div>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="quote-mark">“</div>
+        <p>
+          His work is detailed, data-driven, and focused on solving actual problems. He makes complexity feel simple.
+        </p>
+        <div class="testimonial-author">
+          <strong>Team Lead</strong>
+          <span>Analytics Project</span>
+        </div>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="quote-mark">“</div>
+        <p>
+          Johnbosco brings clarity to complex data and turns it into useful business decisions.
+          His approach is thoughtful, practical, and incredibly effective.
+        </p>
+        <div class="testimonial-author">
+          <strong>Client / Collaborator</strong>
+          <span>Strategy & Insights</span>
+        </div>
+      </article>
+
+      <article class="testimonial-card featured">
+        <div class="quote-mark">“</div>
+        <p>
+          Working with him felt effortless. He combines strong analytical thinking with a sharp eye for
+          real-world business impact and communication.
+        </p>
+        <div class="testimonial-author">
+          <strong>Business Partner</strong>
+          <span>Data & Operations</span>
+        </div>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="quote-mark">“</div>
+        <p>
+          His work is detailed, data-driven, and focused on solving actual problems. He makes complexity feel simple.
+        </p>
+        <div class="testimonial-author">
+          <strong>Team Lead</strong>
+          <span>Analytics Project</span>
+        </div>
+      </article>
+
+    </div>
   </div>
 
-  <div class="gallery-slide">
-    <img src="assets/three.PNG">
-  </div>
-
-</div>
-
-<button class="gallery-btn next-gallery"> <i class="fa-solid fa-chevron-right"></i> </button> </div> </section>
-
+</section>
 
 <!-- ================= CONTACT ================= -->
 
@@ -1007,81 +1145,82 @@ class="gallery floating-section">
 
   </div>
 
-  <p class="contact-text">
-    Let’s connect, collaborate and build meaningful things together.
-  </p>
+  <div class="contact-shell">
 
-  <!-- CONTACT INFO -->
+    <div class="contact-panel contact-merged">
 
-  <div class="contact-info">
+      <div class="contact-copy">
+        <span class="contact-eyebrow">Available for projects</span>
 
-    <p>
-      <i class="fa-solid fa-envelope"></i>
-      Email: <a href="mailto:johnboscoekwuocha1@gmail.com">johnboscoekwuocha1@gmail.com</a>
-    </p>
+        <div class="contact-meta">
+          <span>Response within 24 hours</span>
+          <span>Remote • Freelance • Collaboration</span>
+        </div>
+      </div>
 
-    <p>
-      <i class="fa-solid fa-phone"></i>
-      Phone: +234 813 026 5292
-    </p>
+      <div class="contact-form-wrap">
+        <form class="contact-form"
+        action="mailto:johnboscoekwuocha1@gmail.com"
+        method="POST"
+        enctype="text/plain">
 
-  </div>
+          <div class="form-row">
+            <input type="text"
+            name="name"
+            placeholder="Your Name"
+            required>
+          </div>
 
-  <!-- SEND MESSAGE FORM -->
+          <div class="form-row">
+            <input type="email"
+            name="email"
+            placeholder="Your Email"
+            required>
+          </div>
 
-  <form class="contact-form"
-  action="mailto:johnboscoekwuocha1@gmail.com"
-  method="POST"
-  enctype="text/plain">
+          <div class="form-row">
+            <textarea name="message"
+            rows="5"
+            placeholder="Your Message"
+            required></textarea>
+          </div>
 
-    <input type="text"
-    name="name"
-    placeholder="Your Name"
-    required>
+          <button type="submit" class="btn">
+            Send Inquiry
+          </button>
 
-    <input type="email"
-    name="email"
-    placeholder="Your Email"
-    required>
+        </form>
+      </div>
 
-    <textarea name="message"
-    rows="5"
-    placeholder="Your Message"
-    required></textarea>
+      <div class="social-icons">
 
-    <button type="submit" class="btn">
-      Send Message
-    </button>
+        <a href="https://github.com/mr-aced" target="_blank" rel="noreferrer">
+          <i class="fa-brands fa-github"></i>
+        </a>
 
-  </form>
+        <a href="https://www.linkedin.com/in/johnbosco-ekwuocha-102573320" target="_blank" rel="noreferrer">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
 
-  <!-- SOCIAL ICONS -->
+        <a href="https://wa.me/2348130265292" target="_blank" rel="noreferrer">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
 
-  <div class="social-icons">
+        <a href="https://www.facebook.com/share/17azVqyR6Q/" target="_blank" rel="noreferrer">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
 
-    <a href="https://github.com/mr-aced">
-      <i class="fa-brands fa-github"></i>
-    </a>
+        <a href="https://www.tiktok.com/@mr_aced01" target="_blank" rel="noreferrer">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
 
-    <a href="https://www.linkedin.com/in/johnbosco-ekwuocha-102573320">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
+        <a href="#" aria-label="X profile">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
 
-    <a href="https://wa.me/2348130265292">
-      <i class="fa-brands fa-whatsapp"></i>
-    </a>
+      </div>
 
-    <a href="https://www.facebook.com/share/17azVqyR6Q/">
-      <i class="fa-brands fa-facebook"></i>
-    </a>
-
-    <a href="https://www.tiktok.com/@mr_aced01">
-      <i class="fa-brands fa-tiktok"></i>
-    </a>
-
-    <a href="#">
-      <i class="fa-brands fa-x-twitter"></i>
-    </a>
+    </div>
 
   </div>
 
