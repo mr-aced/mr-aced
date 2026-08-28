@@ -414,6 +414,27 @@ const updateChartHeight =
   });
 };
 
+/* ================= TESTIMONIAL FLIP HANDLER ================= */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.testimonial-card');
+
+  cards.forEach(card => {
+    // Toggle on click (works for touch)
+    card.addEventListener('click', (e) => {
+      card.classList.toggle('is-flipped');
+    });
+
+    // Keyboard accessibility: Enter or Space toggles flip
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.classList.toggle('is-flipped');
+      }
+    });
+  });
+});
+
 const animateCounter =
 (element, targetValue, suffix = "") => {
 
