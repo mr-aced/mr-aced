@@ -288,6 +288,19 @@ img{
   font-size:20px;
 }
 
+/* Reserve space for the typing text to avoid layout shifts on change */
+.hero-text h2{
+  min-height:28px;
+}
+
+#typing{
+  display:inline-block;
+  min-width:30ch; /* reserve width for the longest role */
+  white-space:nowrap;
+  overflow:hidden;
+  vertical-align:middle;
+}
+
 .hero-text p{
 
   color:
@@ -699,6 +712,13 @@ img{
   border-radius:50px;
 
   font-size:12px;
+}
+
+/* Disable hover lift on touch devices to avoid accidental layout jumps */
+@media (hover: none) {
+  .floating-section:hover{
+    transform: none;
+  }
 }
 
 /* ================= EDUCATION ================= */
