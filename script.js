@@ -417,22 +417,70 @@ const updateChartHeight =
 /* ================= TESTIMONIAL FLIP HANDLER ================= */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.testimonial-card');
+  const cards = Array.from(document.querySelectorAll('.testimonial-card'));
 
+  if (!cards.length) return;
+
+  // Click / keyboard toggles (manual)
   cards.forEach(card => {
-    // Toggle on click (works for touch)
-    card.addEventListener('click', (e) => {
+    card.addEventListener('click', () => {
       card.classList.toggle('is-flipped');
+      pauseAutoTemporarily();
     });
 
-    // Keyboard accessibility: Enter or Space toggles flip
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         card.classList.toggle('is-flipped');
+        pauseAutoTemporarily();
       }
     });
+
+    // Pause auto-flip while user hovers or focuses a card
+    card.addEventListener('mouseenter', () => { isPaused = true; });
+    card.addEventListener('mouseleave', () => { isPaused = false; });
+    card.addEventListener('focusin', () => { isPaused = true; });
+    card.addEventListener('focusout', () => { isPaused = false; });
   });
+
+  // Auto-flip settings
+  const AUTO_FLIP_INTERVAL = 5000; // ms between flips
+  const FLIP_VISIBLE_DURATION = 2400; // ms how long a card stays flipped
+
+  let autoIndex = 0;
+  let autoTimer = null;
+  let isPaused = false;
+  let pauseTimeout = null;
+
+  function startAutoFlip() {
+    if (autoTimer) return;
+    autoTimer = setInterval(() => {
+      if (isPaused) return;
+      const card = cards[autoIndex % cards.length];
+      if (!card) return;
+      card.classList.add('is-flipped');
+      setTimeout(() => {
+        card.classList.remove('is-flipped');
+      }, FLIP_VISIBLE_DURATION);
+      autoIndex = (autoIndex + 1) % cards.length;
+    }, AUTO_FLIP_INTERVAL);
+  }
+
+  function stopAutoFlip() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  function pauseAutoTemporarily() {
+    isPaused = true;
+    if (pauseTimeout) clearTimeout(pauseTimeout);
+    pauseTimeout = setTimeout(() => { isPaused = false; }, 8000);
+  }
+
+  // Start auto flipping
+  startAutoFlip();
 });
 
 const animateCounter =
