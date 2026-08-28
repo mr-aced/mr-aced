@@ -149,52 +149,7 @@ img{
   outline:none;
   box-shadow:0 0 0 6px var(--accent-soft);
   border-radius:8px;
-}
 
-/* NAV MENU */
-
-.nav-menu{
-
-  position:absolute;
-
-  top:100%;
-  left:0;
-
-  width:100%;
-
-  background:
-  rgba(17,24,39,.96);
-
-  border-bottom:
-  1px solid var(--border);
-
-  max-height:0;
-
-  overflow:hidden;
-
-  transition:
-  .45s ease;
-}
-
-.nav-menu.active{
-  max-height:500px;
-}
-
-.nav-links{
-  list-style:none;
-}
-
-.nav-links li{
-  border-bottom:
-  1px solid
-  rgba(255,255,255,.05);
-}
-
-.nav-links a{
-
-  display:block;
-
-  padding:18px 22px;
 
   color:white;
 
