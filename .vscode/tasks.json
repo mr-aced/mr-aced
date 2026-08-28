@@ -12,6 +12,9 @@
         "${workspaceFolder}/scripts/auto-push.ps1"
       ],
       "isBackground": true,
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
